@@ -18,6 +18,7 @@ export default {
   ssr: true,
   server: {
     port: 7000,
+    host: '0.0.0.0',
   },
   head: {
     title: 'Nuxt Black Dashboard',
