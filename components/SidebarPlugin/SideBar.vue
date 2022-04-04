@@ -2,7 +2,7 @@
   <div class="sidebar" :data="backgroundColor">
     <div class="sidebar-wrapper" ref="sidebarScrollArea">
       <div class="logo">
-        <a href="http://www.creative-tim.com" class="simple-text logo-mini">
+        <a href="http://www.creative-tim.com" style="display:flex;" class="simple-text d-flex logo-mini">
           <img :src="logo" alt="app-logo" />
         </a>
         <a href="http://www.creative-tim.com" class="simple-text logo-normal">

@@ -28,6 +28,7 @@
 <script>
 import AwesomeMask from 'awesome-mask'
 export default {
+    middleware:'dashboard',
     layout:'empty',
     data: () => ({
         tab:0,

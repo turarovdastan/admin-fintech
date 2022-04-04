@@ -1,10 +1,14 @@
 export const state = () => ({
-    token: null
+    token: null,
+    user: {},
   })
   
 export const mutations = {
     setToken(state, token) {
         state.token = token;
+    },
+    setUser(state, user) {
+        state.user = user
     }
 }
 
@@ -17,7 +21,7 @@ export const actions = {
         }
         return false
     },
-    async signIn({ commit, state  }, body) {
+    async signIn({ commit, state, app  }, body) {
         const Headers = {
             headers: {
               Authorization: 'Bearer ' + state.token
@@ -26,6 +30,11 @@ export const actions = {
         const data = await this.$api.post('/auth/verify', {...body, token: state.token}, Headers)
         if(data.data.status){
             commit('setToken', data.data.payload.token)
+            commit('setUser', data.data.payload.user);
+            window.$nuxt.$cookies.set('token', data.data.payload.token, {
+                path: '/',
+                maxAge: 60 * 60 * 24 * 7
+            })
             return true
         }
         return false

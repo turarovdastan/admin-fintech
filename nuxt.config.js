@@ -72,6 +72,7 @@ export default {
     'nuxt-i18n',
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
+    'cookie-universal-nuxt'
   ],
   i18n: {
     locales: [

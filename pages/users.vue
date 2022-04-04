@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="d-flex align-items-center gap-2">
-        <b-form-input style="min-heigth:70px;font-size:20px;" class="mt-2" placeholder="ФИО,телефон номер,email" id="input-1" v-model="searchModel" trim></b-form-input>
+        <b-form-input style="min-heigth:70px;font-size:20px;" class="mt-2" placeholder="ФИО, номер, email" id="input-1" v-model="searchModel" trim></b-form-input>
         <b-row>
           <!-- <b-col cols="12" style="margin-left:10px;">
             Тип поиска
@@ -38,6 +38,9 @@
           </b-col>
       </b-row>
       </b-col>
+      <b-col cols="3" class="d-flex align-items-center pt-3">
+        <img @click="refresh" style="cursor:pointer" src="@/assets/refresh.svg" alt="">
+      </b-col>
       <!-- <b-col cols="2" class="mt-6">
         <b-button variant="success" class="md-4">Найти</b-button>
       </b-col> -->
@@ -47,21 +50,34 @@
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Middle Name</th>
-            <th scope="col">Contact</th>
-            <th scope="col">Created</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Фамилия</th>
+            <th scope="col">Отчество</th>
+            <th scope="col">Контакты</th>
+            <th scope="col">Дата создания</th>
+            <th scope="col" class="text-center">Статус</th>
+            <th scope="col" class="text-center">Профиль</th>
+            <th scope="col" class="text-center">доступы</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="i in items" :key="i.id" @click="$router.push(`user/${i.id}`)" class="user-table">
+          <tr v-for="i in items" :key="i.id">
             <th scope="row">{{i.id}}</th>
             <td>{{i.first_name}}</td>
             <td>{{i.last_name}}</td>
-            <td>{{i.middle_name}}</td>
+            <td>{{i.middle_name }}</td>
             <td>{{ i.phone || i.email}}</td>
             <td>{{ i.created | dateToCuteString}}</td>
+            <td style="text-align: center;">
+              <i v-if="i.status_verification === 'APPROVED'" class="tim-icons icon-check-2"></i>
+              <i v-else class="tim-icons icon-simple-remove"></i>
+            </td>
+            <td @click="$router.push(`user/${i.id}`)" class="user-table" style="text-align: center;">
+              <i class="tim-icons icon-single-02"></i>
+            </td>
+            <td @click="$router.push(`user/settings/${i.id}`)" class="user-table" style="text-align: center;">
+              <i class="tim-icons icon-settings"></i>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -81,6 +97,8 @@
 
 <script>
   export default {
+    fetchOnServer: false,
+    fetchKey: 'site-users',
     data() {
       return {
         searchModel: '',
@@ -100,7 +118,7 @@
         items: []
       }
     },
-    fetch() {
+    async fetch() {
       this.$api.get(`/users?limit=${this.form.perPage}
         &current=${this.form.currentPage}
         &type=${this.form.usersType.value}
@@ -123,20 +141,32 @@
         }
       }
     },
+    methods: {
+      refresh() {
+        this.form = {
+          dateFrom:'',
+          dateTo:'',
+          usersType: { value: '', text: 'Все пользователи' },
+          perPage: this.form.perPage,
+          currentPage: this.form.currentPage,
+        }
+        this.searchModel = ''
+        this.$fetch()
+      }
+    },
     watch: {
       form: {
         handler() {
           this.$fetch()
         },
         deep: true,
-        immediate: true,
       },
       searchModel() {
         this.form = {
           dateFrom:'',
           dateTo:'',
           usersType: { value: '', text: 'Все пользователи' },
-          perPage: 20,
+          perPage: this.form.perPage,
           currentPage: this.form.currentPage,
         }
         this.$fetch()

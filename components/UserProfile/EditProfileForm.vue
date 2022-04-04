@@ -1,12 +1,12 @@
 <template>
   <card>
-    <h5 slot="header" class="title">Profile</h5>
+    <h5 slot="header" class="title">Профиль</h5>
     <form>
       <div class="row">
         <div class="col-md-4">
           <base-input
             type="text"
-            label="status verification"
+            label="статус верификации"
             placeholder=""
             v-model="user.status_verification"
             :disabled="true"
@@ -26,9 +26,9 @@
         <div class="col-md-4">
           <base-input
             type="email"
-            label="is admin"
+            label="пользователь админ?"
             placeholder="mike@email.com"
-            :value="user.role === 1 ? 'admin' : 'user'"
+            :value="user.role === 1 ? 'да' : 'нет'"
             :disabled="true"
           >
           </base-input>
@@ -39,7 +39,7 @@
         <div class="col-md-4">
           <base-input
             type="text"
-            label="First Name"
+            label="Имя"
             placeholder="First Name"
             v-model="user.first_name"
             :disabled="true"
@@ -49,7 +49,7 @@
         <div class="col-md-4">
           <base-input
             type="text"
-            label="Middle Name"
+            label="Отчество"
             placeholder="First Name"
             v-model="user.middle_name"
             :disabled="true"
@@ -59,7 +59,7 @@
         <div class="col-md-4">
           <base-input
             type="text"
-            label="Last Name"
+            label="Фамилия"
             placeholder="Last Name"
             v-model="user.last_name"
             :disabled="true"
@@ -72,7 +72,7 @@
         <div class="col-md-12">
           <base-input
             type="text"
-            label="Address"
+            label="Адресс"
             placeholder="Home Address"
             v-model="user.address"
             :disabled="true"
@@ -85,7 +85,7 @@
         <div class="col-md-4">
           <base-input
             type="text"
-            label="City"
+            label="Город"
             placeholder="City"
             v-model="user.city"
             :disabled="true"
@@ -95,7 +95,7 @@
         <div class="col-md-4">
           <base-input
             type="text"
-            label="Country"
+            label="Страна"
             placeholder="Country"
             v-model="user.country"
             :disabled="true"
@@ -104,7 +104,7 @@
         </div>
         <div class="col-md-4">
           <base-input
-            label="Postal Code"
+            label="ZIP код"
             placeholder="ZIP Code"
             v-model="user.zip_index"
             :disabled="true"
@@ -139,15 +139,15 @@
           </div>
         </div>
       </div>
-      <div class="row ml-2">
+      <div v-if="showSettings" class="row ml-2">
         <base-button @click="makeAdmin" v-if="user.role === 0" native-type="submit" type="primary" class="btn-fill col-md-3">
-          Make Admin
+          Сделать админом
         </base-button>
         <base-button @click="dropAdmin" v-if="user.role === 1" native-type="submit" type="primary" class="btn-fill col-md-3">
-          Remove Admin
+          Убрать админство
         </base-button>
         <base-button @click="verify" v-if="user.status_verification === 'WAIT'" native-type="submit" type="primary" class="btn-fill col-md-3">
-          Verify
+          Верифицировать
         </base-button>
       </div>
     </form>
@@ -160,6 +160,10 @@ export default {
   props: {
     data: {
       type: Object
+    },
+    showSettings: {
+      type: Boolean,
+      default: false,
     }
   },
   data:() => ({
