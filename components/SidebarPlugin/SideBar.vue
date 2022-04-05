@@ -2,12 +2,12 @@
   <div class="sidebar" :data="backgroundColor">
     <div class="sidebar-wrapper" ref="sidebarScrollArea">
       <div @click="$router.push('/')" class="logo">
-        <a href="#" style="display:flex;" class="simple-text d-flex logo-mini">
+        <nuxt-link to="/" style="display:flex;" class="simple-text d-flex logo-mini">
           <img :src="logo" alt="app-logo" />
-        </a>
-        <a href="#" class="simple-text logo-normal">
+        </nuxt-link>
+        <nuxt-link to="/" class="simple-text logo-normal">
           {{ title }}
-        </a>
+        </nuxt-link>
       </div>
       <slot></slot>
       <ul class="nav">

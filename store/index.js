@@ -43,6 +43,9 @@ export const actions = {
             }
         }
         return false
+    },
+    logout({commit, app ,redirect}) {
+        commit('setToken', null)
     }
 }
 

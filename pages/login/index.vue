@@ -7,7 +7,7 @@
                     Email
                 </div>
                 <div class="c-tab" @click="tab = 1" :class="{'active' : tab === 1}">
-                    Phone
+                    Телефон
                 </div>
             </div>
             <b-card-text v-if="tab === 0">

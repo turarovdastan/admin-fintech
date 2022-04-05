@@ -33,17 +33,17 @@
         >
           <div class="photo"><img style="height: 100%;object-fit: cover;" :src="user.image || 'https://shamrocktools.com/spt-content/uploads/2017/09/blankdirectory.png'" /></div>
           <b class="caret d-none d-lg-block d-xl-block"></b>
-          <p class="d-lg-none">Log out</p>
+          <p class="d-lg-none">Выйти</p>
         </template>
         <li class="nav-link">
-          <a href="#" class="nav-item dropdown-item">Profile</a>
+          <a href="#" class="nav-item dropdown-item">Профиль</a>
         </li>
         <li class="nav-link">
-          <a href="#" class="nav-item dropdown-item">Settings</a>
+          <a href="#" class="nav-item dropdown-item">Настройки</a>
         </li>
         <div class="dropdown-divider"></div>
         <li @click="logout" class="nav-link">
-          <a @click="logout" href="#" class="nav-item dropdown-item">Log out</a>
+          <a @click="logout" href="#" class="nav-item dropdown-item">Выйти</a>
         </li>
       </base-dropdown>
     </ul>
@@ -100,9 +100,6 @@ export default {
       this.showMenu = !this.showMenu;
     },
     logout(e) {
-      this.$store.commit('setToken', null)
-      this.$cookies.remove('token')
-      this.$router.push('/login')
     },
   }
 };
