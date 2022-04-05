@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar" :data="backgroundColor">
     <div class="sidebar-wrapper" ref="sidebarScrollArea">
-      <div class="logo">
+      <div @click="$router.push('/')" class="logo">
         <a href="#" style="display:flex;" class="simple-text d-flex logo-mini">
           <img :src="logo" alt="app-logo" />
         </a>

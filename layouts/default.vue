@@ -26,7 +26,7 @@
         </sidebar-item>
         <sidebar-item
           :link="{
-            name: 'Заявки',
+            name: 'Верификация',
             icon: 'tim-icons icon-single-02',
             path: '/requests'
           }"

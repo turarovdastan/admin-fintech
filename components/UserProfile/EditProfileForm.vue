@@ -141,10 +141,10 @@
       </div>
       <div v-if="showSettings" class="row ml-2">
         <base-button @click="makeAdmin" v-if="user.role === 0" native-type="submit" type="primary" class="btn-fill col-md-3">
-          Сделать админом
+         Сделать администратором
         </base-button>
         <base-button @click="dropAdmin" v-if="user.role === 1" native-type="submit" type="primary" class="btn-fill col-md-3">
-          Убрать админство
+          Убрать администрирование
         </base-button>
         <base-button @click="verify" v-if="user.status_verification === 'WAIT'" native-type="submit" type="primary" class="btn-fill col-md-3">
           Верифицировать

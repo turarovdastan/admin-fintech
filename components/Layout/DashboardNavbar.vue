@@ -101,6 +101,7 @@ export default {
     },
     logout(e) {
       this.$store.commit('setToken', null)
+      this.$cookies.remove('token')
       this.$router.push('/login')
     },
   }

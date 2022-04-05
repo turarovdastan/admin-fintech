@@ -73,8 +73,8 @@
           <a href="#" class="nav-item dropdown-item">Settings</a>
         </li>
         <div class="dropdown-divider"></div>
-        <li class="nav-link">
-          <a href="#" class="nav-item dropdown-item">Log out</a>
+        <li  @click="logout" class="nav-link">
+          <a @click="logout" href="#" class="nav-item dropdown-item">Log out</a>
         </li>
       </base-dropdown>
     </ul>
@@ -126,7 +126,12 @@ export default {
     },
     toggleMenu() {
       this.showMenu = !this.showMenu;
-    }
+    },
+    logout(e) {
+      this.$store.commit('setToken', null)
+      this.$cookies.remove('token')
+      this.$router.push('/login')
+    },
   }
 };
 </script>
