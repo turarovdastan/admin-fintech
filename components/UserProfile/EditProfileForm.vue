@@ -120,19 +120,19 @@
             <img v-for="(i,k) in user.selfie" :src="i" :key="k" class="col-md-2" alt="">
           </div>
         </div>
-        <div v-if="user.passport.length"  @click="openModal(user.passport)" class="col-md-4">
+        <div v-if="user.passport && user.passport.length"  @click="openModal(user.passport)" class="col-md-4">
           <strong>Фото паспорта</strong>
           <div class="row">
             <img v-for="(i,k) in user.passport" :src="i" :key="k" class="col-md-2" alt="">
           </div>
         </div>
-        <div v-if="user.id_passport.length"  @click="openModal(user.id_passport)" class="col-md-4">
+        <div v-if="user.id_passport && user.id_passport.length"  @click="openModal(user.id_passport)" class="col-md-4">
           <strong>Фото id карты</strong>
           <div class="row">
             <img v-for="(i,k) in user.id_passport" :src="i" :key="k" class="col-md-2" alt="">
           </div>
         </div>
-        <div v-if="user.driver.length"  @click="openModal(user.driver)" class="col-md-4">
+        <div v-if="user.driver && user.driver.length"  @click="openModal(user.driver)" class="col-md-4">
           <strong>Фото ВУ</strong>
           <div class="row">
             <img v-for="(i,k) in user.driver" :src="i" :key="k" class="col-md-2" alt="">

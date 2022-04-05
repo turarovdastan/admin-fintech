@@ -8,7 +8,7 @@
       <div class="block block-four"></div>
       <a href="javascript:void(0)">
         <img class="avatar" :src="user.image || 'https://shamrocktools.com/spt-content/uploads/2017/09/blankdirectory.png'" alt="..." />
-        <h5 class="title">{{`${user.first_name} ${user.last_name} ${user.middle_name}`}}</h5>
+        <h5 class="title">{{`${user.first_name || ''} ${user.last_name || ''} ${user.middle_name || ''}`}}</h5>
       </a>
       <p class="description">{{ user.dob | dateToCuteString}}</p>
     </div>
@@ -42,6 +42,7 @@ export default {
   },
   filters: {
     dateToCuteString(val) {
+      if(!val) return ''
       const date = new Date(val);
       return date.toLocaleDateString('ru-RU', {
         weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',

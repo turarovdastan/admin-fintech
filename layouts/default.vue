@@ -24,6 +24,14 @@
           }"
         >
         </sidebar-item>
+        <sidebar-item
+          :link="{
+            name: 'Заявки',
+            icon: 'tim-icons icon-single-02',
+            path: '/requests'
+          }"
+        >
+        </sidebar-item>
        
       </template>
     </side-bar>
